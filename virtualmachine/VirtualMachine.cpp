@@ -9,8 +9,9 @@
 #include "VirtualMachine.h"
 
 #include "Decoder.h"
-#include "operation.h"
+#include "Instruction.h"
 
+namespace vm {
 
 uint32_t VirtualMachine::run(std::vector<uint32_t> instructions) {
     m_running = true;
@@ -56,52 +57,52 @@ void VirtualMachine::execute() {
     }
     
     switch (m_op_code) {
-        case AND:
+        case Instruction::OP_AND:
             *op_dest = op_a & op_b;
             break;
-        case EOR:
+        case Instruction::OP_EOR:
             *op_dest = op_a ^ op_b;
             break;
-        case SUB:
+        case Instruction::OP_SUB:
             *op_dest = op_a - op_b;
             break;
-        case RSB:
+        case Instruction::OP_RSB:
             *op_dest = op_b - op_a;
             break;
-        case ADD:
+        case Instruction::OP_ADD:
             *op_dest = op_a + op_b;
             break;
-        case ADC:
+        case Instruction::OP_ADC:
             *op_dest = op_a + op_b + m_carry;
             break;
-        case SBC:
+        case Instruction::OP_SBC:
             *op_dest = op_a - op_b + m_carry - 1;
             break;
-        case RSC:
+        case Instruction::OP_RSC:
             *op_dest = op_b - op_a + m_carry - 1;
             break;
-        case TST:
+        case Instruction::OP_TST:
             m_reg_cpsr = op_a & op_b;
             break;
-        case TEQ:
+        case Instruction::OP_TEQ:
             m_reg_cpsr = op_a ^ op_b;
             break;
-        case CMP:
+        case Instruction::OP_CMP:
             m_reg_cpsr = op_a - op_b;
             break;
-        case CMN:
+        case Instruction::OP_CMN:
             m_reg_cpsr = op_a + op_b;
             break;
-        case ORR:
+        case Instruction::OP_ORR:
             *op_dest = op_a | op_b;
             break;
-        case MOV:
+        case Instruction::OP_MOV:
             *op_dest = op_b;
             break;
-        case BIC:
+        case Instruction::OP_BIC:
             *op_dest = op_a & (~ op_b);
             break;
-        case MVN:
+        case Instruction::OP_MVN:
             *op_dest = ~ op_b;
             break;
         default:
@@ -117,6 +118,6 @@ void VirtualMachine::show_registers() {
     printf("\n");
 }
 
-
+} // namespace vm
 
 

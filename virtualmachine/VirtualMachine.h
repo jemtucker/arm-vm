@@ -11,25 +11,15 @@
 
 #include <vector>
 
+#include "Decoder.h"
+
 #define NUM_REGS 16
 
 #define REG_SP 15
 #define REG_LR 15
 #define REG_PC 15
 
-typedef struct {
-    uint32_t instruction;
-    uint32_t condition;
-    uint32_t reg_dest;
-    uint32_t reg_n;
-    uint32_t reg_m;
-    uint32_t reg_m_shift;
-    uint32_t imm;
-    uint32_t imm_shift;
-} Operation;
-
-class Decoder;
-
+namespace vm {
 
 class VirtualMachine {
     std::vector<uint32_t> m_registers = std::vector<uint32_t>( NUM_REGS );
@@ -67,6 +57,6 @@ public:
     void show_registers();
 };
     
-
+} // namespace vm
 
 #endif /* defined(__virtualmachine__VirtualMachine__) */

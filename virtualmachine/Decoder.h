@@ -11,6 +11,8 @@
 #ifndef __virtualmachine__Decoder__
 #define __virtualmachine__Decoder__
 
+namespace vm {
+
 typedef struct {
     char s = 0;
     char i = 0;
@@ -29,5 +31,7 @@ class Decoder {
 public:
     DecodedOperation decode(uint32_t instr);
 };
+    
+} // namespace vm
 
 #endif /* defined(__virtualmachine__Decoder__) */

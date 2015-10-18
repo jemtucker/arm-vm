@@ -8,6 +8,17 @@
 
 #include "Decoder.h"
 
+/**
+ *
+ * Structure of bits
+ *
+ *   3                   2                   1                   0
+ * 1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0 9 8 7 6 5 4 3 2 1 0
+ *  cond  |   |i|op_code|s| reg_n | reg_d |        operand_2
+ *
+ */
+namespace vm {
+
 DecodedOperation Decoder::decode(uint32_t instr) {
     DecodedOperation op;
     
@@ -30,3 +41,5 @@ DecodedOperation Decoder::decode(uint32_t instr) {
     
     return op;
 }
+    
+} // namespace vm

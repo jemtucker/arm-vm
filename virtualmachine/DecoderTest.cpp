@@ -12,11 +12,11 @@
 
 class DecoderTest: public ::testing::Test {
 protected:
-    Decoder decoder;
+    vm::Decoder decoder;
 };
 
 TEST_F(DecoderTest, ExtractsConditions) {
-    DecodedOperation op = decoder.decode(0x40000000);
+    vm::DecodedOperation op = decoder.decode(0x40000000);
     EXPECT_EQ(0x4, op.cond);
     
     op = decoder.decode(0x44dd4000);
@@ -36,7 +36,7 @@ TEST_F(DecoderTest, ExtractsConditions) {
 }
 
 TEST_F(DecoderTest, ExtractsTheIFlag) {
-    DecodedOperation op = decoder.decode(0x02000000);
+    vm::DecodedOperation op = decoder.decode(0x02000000);
     EXPECT_EQ(0x1, op.i);
     
     op = decoder.decode(0x01000000);
@@ -44,7 +44,7 @@ TEST_F(DecoderTest, ExtractsTheIFlag) {
 }
 
 TEST_F(DecoderTest, ExtractsTheSFlag) {
-    DecodedOperation op = decoder.decode(0x00100000);
+    vm::DecodedOperation op = decoder.decode(0x00100000);
     EXPECT_EQ(0x1, op.s);
     
     op = decoder.decode(0x00080000);
@@ -52,7 +52,7 @@ TEST_F(DecoderTest, ExtractsTheSFlag) {
 }
 
 TEST_F(DecoderTest, ExtractsOperationCodes) {
-    DecodedOperation op = decoder.decode(0x00100000);
+    vm::DecodedOperation op = decoder.decode(0x00100000);
     EXPECT_EQ(0x1, op.code);
     
     op = decoder.decode(0x00200000);
@@ -66,7 +66,7 @@ TEST_F(DecoderTest, ExtractsOperationCodes) {
 }
 
 TEST_F(DecoderTest, ExtractsRn) {
-    DecodedOperation op = decoder.decode(0x00010000);
+    vm::DecodedOperation op = decoder.decode(0x00010000);
     EXPECT_EQ(0x1, op.reg_n);
     
     op = decoder.decode(0x000F0000);
@@ -77,7 +77,7 @@ TEST_F(DecoderTest, ExtractsRn) {
 }
 
 TEST_F(DecoderTest, ExtractsRd) {
-    DecodedOperation op = decoder.decode(0x00001000);
+    vm::DecodedOperation op = decoder.decode(0x00001000);
     EXPECT_EQ(0x1, op.reg_d);
     
     op = decoder.decode(0x0000F000);
@@ -88,7 +88,7 @@ TEST_F(DecoderTest, ExtractsRd) {
 }
 
 TEST_F(DecoderTest, ExtractsRmOnlyIfNotI) {
-    DecodedOperation op = decoder.decode(0x02000001);
+    vm::DecodedOperation op = decoder.decode(0x02000001);
     EXPECT_EQ(0x0, op.reg_m);
     
     op = decoder.decode(0x0110000F);
@@ -99,7 +99,7 @@ TEST_F(DecoderTest, ExtractsRmOnlyIfNotI) {
 }
 
 TEST_F(DecoderTest, ExtractsImmOnlyIfNotI) {
-    DecodedOperation op = decoder.decode(0x02000001);
+    vm::DecodedOperation op = decoder.decode(0x02000001);
     EXPECT_EQ(0x1, op.imm_val);
     
     op = decoder.decode(0x0110000F);
