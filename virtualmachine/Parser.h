@@ -9,7 +9,6 @@
 #ifndef __virtualmachine__Parser__
 #define __virtualmachine__Parser__
 
-#include "Instruction.h"
 #include "Lexer.h"
 
 #include <map>
@@ -30,8 +29,16 @@ typedef struct {
 } InstructionModel;
     
 class Parser {
-    std::map<std::string, char> instruction_operations;
+    std::map<std::string, char> instruction_codes;
+    std::map<std::string, char> condition_codes;
     
+    void parse_arg_c(TokenisedInstruction instruction, InstructionModel *result_model);
+    
+    const char parse_reg_string(std::string string);
+    
+    const char parse_s(TokenisedInstruction instruction);
+    const char parse_reg_d(TokenisedInstruction instruction);
+    const char parse_reg_n(TokenisedInstruction instruction);
     const char parse_operation_code(TokenisedInstruction instruction);
     const char parse_condition_code(TokenisedInstruction instruction);
     
