@@ -9,16 +9,21 @@
 #ifndef __virtualmachine__Assembler__
 #define __virtualmachine__Assembler__
 
-#include <map>
-#include <string>
 #include <vector>
 
-namespace assembler {
+#include "Lexer.h"
+#include "Parser.h"
 
-class Assembler {
+namespace assembler {
     
+class Assembler {
+    Parser m_parser;
+    Lexer  m_lexer;
+    
+    std::vector<std::string> code_into_lines(std::string code);
     
 public:
+    int assemble_model(InstructionModel model);
     std::vector<int> assemble(std::string code);
 };
     

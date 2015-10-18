@@ -16,16 +16,16 @@
 namespace assembler {
     
 typedef struct {
-    char s = 0;
-    char i = 0;
-    char code = 0;
-    char cond = 0;
-    char reg_d = 0;
-    char reg_n = 0;
-    char reg_m = 0;
-    char reg_s = 0;
-    char imm_val = 0;
-    char imm_rot = 0;
+    char s = 0x00;
+    char i = 0x00;
+    char code = 0x00;
+    char cond = 0x00;
+    char reg_d = 0x00;
+    char reg_n = 0x00;
+    char reg_m = 0x00;
+    char reg_s = 0x00;
+    char imm_val = 0x00;
+    char imm_rot = 0x00;
 } InstructionModel;
     
 class Parser {
