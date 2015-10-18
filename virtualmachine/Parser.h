@@ -30,12 +30,14 @@ typedef struct {
 } InstructionModel;
     
 class Parser {
-    static const std::map<std::string, char> instruction_operations;
+    std::map<std::string, char> instruction_operations;
     
     const char parse_operation_code(TokenisedInstruction instruction);
     const char parse_condition_code(TokenisedInstruction instruction);
     
 public:
+    Parser();
+    
     InstructionModel parse(TokenisedInstruction instruction);
 };
     
