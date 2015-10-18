@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Jem Tucker. All rights reserved.
 //
 
-#include <cstdint>
-
 #ifndef __virtualmachine__Decoder__
 #define __virtualmachine__Decoder__
+
+#include <cstdint>
 
 namespace vm {
 

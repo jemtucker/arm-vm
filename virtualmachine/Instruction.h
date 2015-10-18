@@ -14,41 +14,41 @@
 namespace vm {
 
 class Instruction {
-    static const std::string AND;
-    static const std::string EOR;
-    static const std::string SUB;
-    static const std::string RSB;
-    static const std::string ADD;
-    static const std::string ADC;
-    static const std::string SBC;
-    static const std::string RSC;
-    static const std::string TST;
-    static const std::string TEQ;
-    static const std::string CMP;
-    static const std::string CMN;
-    static const std::string ORR;
-    static const std::string MOV;
-    static const std::string BIC;
-    static const std::string MVN;
-    
-    static const std::string EQ;
-    static const std::string NE;
-    static const std::string HS;
-    static const std::string LO;
-    static const std::string MI;
-    static const std::string PL;
-    static const std::string VS;
-    static const std::string VC;
-    static const std::string HI;
-    static const std::string LS;
-    static const std::string GE;
-    static const std::string LT;
-    static const std::string GT;
-    static const std::string LE;
-    static const std::string AL;
-    static const std::string NV;
-    
 public:
+    static const std::string MN_AND;
+    static const std::string MN_EOR;
+    static const std::string MN_SUB;
+    static const std::string MN_RSB;
+    static const std::string MN_ADD;
+    static const std::string MN_ADC;
+    static const std::string MN_SBC;
+    static const std::string MN_RSC;
+    static const std::string MN_TST;
+    static const std::string MN_TEQ;
+    static const std::string MN_CMP;
+    static const std::string MN_CMN;
+    static const std::string MN_ORR;
+    static const std::string MN_MOV;
+    static const std::string MN_BIC;
+    static const std::string MN_MVN;
+    
+    static const std::string MN_EQ;
+    static const std::string MN_NE;
+    static const std::string MN_HS;
+    static const std::string MN_LO;
+    static const std::string MN_MI;
+    static const std::string MN_PL;
+    static const std::string MN_VS;
+    static const std::string MN_VC;
+    static const std::string MN_HI;
+    static const std::string MN_LS;
+    static const std::string MN_GE;
+    static const std::string MN_LT;
+    static const std::string MN_GT;
+    static const std::string MN_LE;
+    static const std::string MN_AL;
+    static const std::string MN_NV;
+    
     static const char OP_AND = 0x00;
     static const char OP_EOR = 0x01;
     static const char OP_SUB = 0x02;
