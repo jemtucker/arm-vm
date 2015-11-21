@@ -17,8 +17,9 @@
 int main(int argc, const char * argv[]) {
     assembler::Assembler ass;
     vm::VirtualMachine vm;
+    vm.set_debug(true);
     
-    auto instr = ass.assemble("ADD R1 R2 9");
+    auto instr = ass.assemble("MOV R1 #9");
     
     vm.run(instr);
     

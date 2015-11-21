@@ -52,17 +52,17 @@ TEST_F(DecoderTest, ExtractsTheSFlag) {
 }
 
 TEST_F(DecoderTest, ExtractsOperationCodes) {
-    vm::DecodedOperation op = decoder.decode(0x00100000);
-    EXPECT_EQ(0x1, op.code);
-    
-    op = decoder.decode(0x00200000);
+    vm::DecodedOperation op = decoder.decode(0x02432001);
     EXPECT_EQ(0x2, op.code);
     
-    op = decoder.decode(0x00F00000);
+    op = decoder.decode(0x00632000);
+    EXPECT_EQ(0x3, op.code);
+    
+    op = decoder.decode(0x01632000);
+    EXPECT_EQ(0xB, op.code);
+    
+    op = decoder.decode(0x01E32000);
     EXPECT_EQ(0xF, op.code);
-    
-    op = decoder.decode(0x01200000);
-    EXPECT_EQ(0x2, op.code);
 }
 
 TEST_F(DecoderTest, ExtractsRn) {

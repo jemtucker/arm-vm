@@ -25,6 +25,7 @@ class VirtualMachine {
     std::vector<uint32_t> m_registers = std::vector<uint32_t>( NUM_REGS );
     
     bool m_running = true;
+    bool m_debug = false;
     
     uint32_t *m_reg_sp = &m_registers[ REG_SP ];
     uint32_t *m_reg_lr = &m_registers[ REG_LR ];
@@ -51,10 +52,15 @@ class VirtualMachine {
     
     void decode(uint32_t instruction);
     void execute();
+    void show_registers();
+    
+    void debug(std::string message);
     
 public:
+    void set_debug(bool on);
+    
+    
     uint32_t run(std::vector<uint32_t> instructions);
-    void show_registers();
     std::vector<uint32_t> get_registers();
 };
     

@@ -27,7 +27,7 @@ DecodedOperation Decoder::decode(uint32_t instr) {
     op.i = (instr >> 25) & 1;
     op.s = (instr >> 20) & 1;
     
-    op.code  = (instr >> 20) & 0xF;
+    op.code  = (instr >> 21) & 0xF;
     op.reg_d = (instr >> 12) & 0xF;
     op.reg_n = (instr >> 16) & 0xF;
     

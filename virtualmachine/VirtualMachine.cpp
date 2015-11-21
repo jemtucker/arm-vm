@@ -11,6 +11,8 @@
 #include "Decoder.h"
 #include "Instruction.h"
 
+#include <iostream>
+
 namespace vm {
 
 uint32_t VirtualMachine::run(std::vector<uint32_t> instructions) {
@@ -58,51 +60,67 @@ void VirtualMachine::execute() {
     
     switch (m_op_code) {
         case Instruction::OP_AND:
+            debug("Executing [AND]");
             *op_dest = op_a & op_b;
             break;
         case Instruction::OP_EOR:
+            debug("Executing [EOR]");
             *op_dest = op_a ^ op_b;
             break;
         case Instruction::OP_SUB:
+            debug("Executing [SUB]");
             *op_dest = op_a - op_b;
             break;
         case Instruction::OP_RSB:
+            debug("Executing [RSB]");
             *op_dest = op_b - op_a;
             break;
         case Instruction::OP_ADD:
+            debug("Executing [ADD]");
             *op_dest = op_a + op_b;
             break;
         case Instruction::OP_ADC:
+            debug("Executing [ADC]");
             *op_dest = op_a + op_b + m_carry;
             break;
         case Instruction::OP_SBC:
+            debug("Executing [SBC]");
             *op_dest = op_a - op_b + m_carry - 1;
             break;
         case Instruction::OP_RSC:
+            debug("Executing [RSC]");
             *op_dest = op_b - op_a + m_carry - 1;
             break;
         case Instruction::OP_TST:
+            debug("Executing [TST]");
             m_reg_cpsr = op_a & op_b;
             break;
         case Instruction::OP_TEQ:
+            debug("Executing [TEQ]");
             m_reg_cpsr = op_a ^ op_b;
             break;
         case Instruction::OP_CMP:
+            debug("Executing [CMP]");
             m_reg_cpsr = op_a - op_b;
             break;
         case Instruction::OP_CMN:
+            debug("Executing [CMN]");
             m_reg_cpsr = op_a + op_b;
             break;
         case Instruction::OP_ORR:
+            debug("Executing [ORR]");
             *op_dest = op_a | op_b;
             break;
         case Instruction::OP_MOV:
+            debug("Executing [MOV]");
             *op_dest = op_b;
             break;
         case Instruction::OP_BIC:
+            debug("Executing [BIC]");
             *op_dest = op_a & (~ op_b);
             break;
         case Instruction::OP_MVN:
+            debug("Executing [MVN]");
             *op_dest = ~ op_b;
             break;
         default:
@@ -120,6 +138,16 @@ void VirtualMachine::show_registers() {
     
 std::vector<uint32_t> VirtualMachine::get_registers() {
     return m_registers;
+}
+    
+    void VirtualMachine::set_debug(bool on) {
+        m_debug = on;
+    }
+    
+void VirtualMachine::debug(std::string message) {
+    if (m_debug) {
+        std::cout << message << std::endl;
+    }
 }
 
 } // namespace vm
