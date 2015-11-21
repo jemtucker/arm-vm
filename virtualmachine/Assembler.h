@@ -23,8 +23,8 @@ class Assembler {
     std::vector<std::string> code_into_lines(std::string code);
     
 public:
-    int assemble_model(InstructionModel model);
-    std::vector<int> assemble(std::string code);
+    uint32_t assemble_model(InstructionModel model);
+    std::vector<uint32_t> assemble(std::string code);
 };
     
 } // namespace assembler

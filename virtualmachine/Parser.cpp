@@ -74,14 +74,14 @@ void Parser::parse_arg_c(TokenisedInstruction instruction, InstructionModel *res
         result_model->i = 0x01;
         result_model->imm_val = std::stoi(instruction.arg_c, &i, 16);
         result_model->imm_rot = 0x00;
-    } else if (instruction.arg_c.size() > 0) {
+    } else if (instruction.arg_c.size() > 1 && instruction.arg_c.substr(0, 1) == "#") {
         result_model->i = 0x01;
-        result_model->imm_val = std::stoi(instruction.arg_c);
+        result_model->imm_val = std::stoi(instruction.arg_c.substr(1));
         result_model->imm_rot = 0x00;
     }
 }
     
-const char Parser::parse_s(TokenisedInstruction instruction) {
+const uint8_t Parser::parse_s(TokenisedInstruction instruction) {
     if (instruction.s == "S") {
         return 0x01;
     } else {
@@ -89,7 +89,7 @@ const char Parser::parse_s(TokenisedInstruction instruction) {
     }
 }
     
-const char Parser::parse_reg_string(std::string string) {
+const uint8_t Parser::parse_reg_string(std::string string) {
     if (string.size() > 1) {
         return std::stoi(string.substr(1));
     } else {
@@ -97,15 +97,15 @@ const char Parser::parse_reg_string(std::string string) {
     }
 }
 
-const char Parser::parse_reg_d(TokenisedInstruction instruction) {
+const uint8_t Parser::parse_reg_d(TokenisedInstruction instruction) {
     return parse_reg_string(instruction.arg_a);
 }
 
-const char Parser::parse_reg_n(TokenisedInstruction instruction) {
+const uint8_t Parser::parse_reg_n(TokenisedInstruction instruction) {
     return parse_reg_string(instruction.arg_b);
 }
     
-const char Parser::parse_operation_code(TokenisedInstruction instruction) {
+const uint8_t Parser::parse_operation_code(TokenisedInstruction instruction) {
     if (instruction_codes.count(instruction.operation) > 0) {
         return instruction_codes.at(instruction.operation);
     } else {
@@ -113,7 +113,7 @@ const char Parser::parse_operation_code(TokenisedInstruction instruction) {
     }
 }
     
-const char Parser::parse_condition_code(TokenisedInstruction instruction) {
+const uint8_t Parser::parse_condition_code(TokenisedInstruction instruction) {
     if (condition_codes.count(instruction.condition) > 0) {
         return condition_codes.at(instruction.condition);
     } else {

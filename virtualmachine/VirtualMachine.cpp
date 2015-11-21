@@ -117,6 +117,10 @@ void VirtualMachine::show_registers() {
     }
     printf("\n");
 }
+    
+std::vector<uint32_t> VirtualMachine::get_registers() {
+    return m_registers;
+}
 
 } // namespace vm
 

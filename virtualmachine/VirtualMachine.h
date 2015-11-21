@@ -55,6 +55,7 @@ class VirtualMachine {
 public:
     uint32_t run(std::vector<uint32_t> instructions);
     void show_registers();
+    std::vector<uint32_t> get_registers();
 };
     
 } // namespace vm

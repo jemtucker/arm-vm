@@ -14,6 +14,17 @@ protected:
     assembler::Assembler assembler;
 };
 
+TEST_F(AssemblerTest, AssemblesStringCommands) {
+    EXPECT_EQ(0x03A01001, assembler.assemble("MOV R1 #1").front());
+    EXPECT_EQ(0x01A01002, assembler.assemble("mov r1 r2").front());
+    EXPECT_EQ(0x03A01001, assembler.assemble("mov r1 #1").front());
+    EXPECT_EQ(0x02432001, assembler.assemble("sub r2 r3 #1").front());
+    
+    EXPECT_EQ(0x01A01002, assembler.assemble("mov r1 r2").front());
+    EXPECT_EQ(0x03A01001, assembler.assemble("mov r1 #1").front());
+    EXPECT_EQ(0x02432001, assembler.assemble("sub r2 r3 #1").front());
+}
+
 TEST_F(AssemblerTest, AssemblesTheIFlag) {
     assembler::InstructionModel instr;
     

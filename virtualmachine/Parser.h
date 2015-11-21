@@ -16,16 +16,16 @@
 namespace assembler {
     
 typedef struct {
-    char s = 0x00;
-    char i = 0x00;
-    char code = 0x00;
-    char cond = 0x00;
-    char reg_d = 0x00;
-    char reg_n = 0x00;
-    char reg_m = 0x00;
-    char reg_s = 0x00;
-    char imm_val = 0x00;
-    char imm_rot = 0x00;
+    uint8_t s = 0x00;
+    uint8_t i = 0x00;
+    uint8_t code = 0x00;
+    uint8_t cond = 0x00;
+    uint8_t reg_d = 0x00;
+    uint8_t reg_n = 0x00;
+    uint8_t reg_m = 0x00;
+    uint8_t reg_s = 0x00;
+    uint8_t imm_val = 0x00;
+    uint8_t imm_rot = 0x00;
 } InstructionModel;
     
 class Parser {
@@ -34,13 +34,12 @@ class Parser {
     
     void parse_arg_c(TokenisedInstruction instruction, InstructionModel *result_model);
     
-    const char parse_reg_string(std::string string);
-    
-    const char parse_s(TokenisedInstruction instruction);
-    const char parse_reg_d(TokenisedInstruction instruction);
-    const char parse_reg_n(TokenisedInstruction instruction);
-    const char parse_operation_code(TokenisedInstruction instruction);
-    const char parse_condition_code(TokenisedInstruction instruction);
+    const uint8_t parse_reg_string(std::string string);
+    const uint8_t parse_s(TokenisedInstruction instruction);
+    const uint8_t parse_reg_d(TokenisedInstruction instruction);
+    const uint8_t parse_reg_n(TokenisedInstruction instruction);
+    const uint8_t parse_operation_code(TokenisedInstruction instruction);
+    const uint8_t parse_condition_code(TokenisedInstruction instruction);
     
 public:
     Parser();

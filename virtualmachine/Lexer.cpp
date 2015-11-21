@@ -8,14 +8,13 @@
 
 #include "Lexer.h"
 
-#include <boost/algorithm/string/classification.hpp>
-#include <boost/algorithm/string/split.hpp>
+#include <boost/algorithm/string.hpp>
 
 namespace assembler {
     
 const TokenisedInstruction Lexer::tokenize(std::string line) {
+    boost::to_upper(line);
     std::vector<std::string> lexed_tokens;
-    
     boost::split(lexed_tokens, line, boost::is_any_of(", "), boost::token_compress_on);
     
     TokenisedInstruction instr;
@@ -26,6 +25,12 @@ const TokenisedInstruction Lexer::tokenize(std::string line) {
     instr.arg_b     = tokens_to_arg_b(lexed_tokens);
     instr.arg_c     = tokens_to_arg_c(lexed_tokens);
     instr.s         = tokens_to_s(lexed_tokens);
+    
+    // arg_c should never be empty when arg_b is not, this handles cases such as mov r1, #10
+    if (instr.arg_c.size() == 0 && instr.arg_b.size() != 0) {
+        instr.arg_c = instr.arg_b;
+        instr.arg_b = "";
+    }
     
     return instr;
 }

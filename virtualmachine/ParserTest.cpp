@@ -166,7 +166,7 @@ TEST_F(ParserTest, ParsesTheSecondOpAsAnImmVal) {
         "",
         "",
         "",
-        "9"
+        "#9"
     };
     
     auto result = parser.parse(instr);
@@ -214,7 +214,7 @@ TEST_F(ParserTest, Parses8BitImmVal) {
         "",
         "",
         "",
-        "100"
+        "#100"
     };
     
     auto result = parser.parse(instr);

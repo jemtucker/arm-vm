@@ -13,22 +13,22 @@
 
 namespace assembler {
     
-std::vector<int> Assembler::assemble(std::string code) {
-    std::vector<int> result;
+std::vector<uint32_t> Assembler::assemble(std::string code) {
+    std::vector<uint32_t> result;
     
     auto lines = code_into_lines(code);
     
     for (auto iter = lines.begin(); iter != lines.end(); iter++) {
         auto tokens = m_lexer.tokenize(*iter);
         auto model = m_parser.parse(tokens);
-        int byte_code = assemble_model(model);
+        uint32_t byte_code = assemble_model(model);
         result.push_back(byte_code);
     }
     
     return result;
 }
 
-int Assembler::assemble_model(InstructionModel model) {
+uint32_t Assembler::assemble_model(InstructionModel model) {
     uint32_t condition = model.cond << 28;
     uint32_t operation = model.code << 21;
     uint32_t reg_n = model.reg_n << 16;
