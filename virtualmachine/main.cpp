@@ -16,10 +16,11 @@
 
 int main(int argc, const char * argv[]) {
     assembler::Assembler ass;
+    
     vm::VirtualMachine vm;
     vm.set_debug(true);
     
-    auto instr = ass.assemble("MOV R1 #9");
+    auto instr = ass.assemble("MOV R1 #9\nmov r0 #100\nadd r2 r1 r0");
     
     vm.run(instr);
     

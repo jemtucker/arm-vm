@@ -16,19 +16,22 @@
 namespace vm {
 
 uint32_t VirtualMachine::run(std::vector<uint32_t> instructions) {
+    *m_reg_pc = 0;
     m_running = true;
+    
     while (m_running) {
         show_registers();
         uint32_t instr = fetch(instructions);
         decode(instr);
         execute();
     }
+    
     show_registers();
     return 0;
 }
 
 uint32_t VirtualMachine::fetch(std::vector<uint32_t> instructions) {
-    return instructions[ *m_reg_sp++ ];
+    return instructions[ (*m_reg_pc)++ ];
 }
 
 void VirtualMachine::decode(uint32_t instruction) {
