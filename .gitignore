@@ -1,1 +1,3 @@
-*.xcodeproj
+.depend
+*.o
+armvm
