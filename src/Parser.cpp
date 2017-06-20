@@ -51,7 +51,7 @@ Parser::Parser() {
     condition_codes[ vm::Instruction::MN_NV ] = vm::Instruction::CND_NV;
 }
 
-InstructionModel Parser::parse(TokenisedInstruction instruction) {
+InstructionModel Parser::parse(const TokenisedInstruction& instruction) {
     InstructionModel model;
 
     model.s = parse_s(instruction);
@@ -60,28 +60,28 @@ InstructionModel Parser::parse(TokenisedInstruction instruction) {
     model.reg_d = parse_reg_d(instruction);
     model.reg_n = parse_reg_n(instruction);
 
-    parse_arg_c(instruction, &model);
+    parse_arg_c(instruction, model);
 
     return model;
 }
 
-void Parser::parse_arg_c(TokenisedInstruction instruction, InstructionModel *result_model) {
+void Parser::parse_arg_c(const TokenisedInstruction& instruction, InstructionModel& result_model) {
     if (instruction.arg_c.size() > 1 && instruction.arg_c.substr(0, 1) == "R") {
-        result_model->reg_m = std::stoi(instruction.arg_c.substr(1));
-        result_model->reg_s = 0x00;
+        result_model.reg_m = std::stoi(instruction.arg_c.substr(1));
+        result_model.reg_s = 0x00;
     } else if (instruction.arg_c.size() > 2 && instruction.arg_c.substr(0, 2) == "0x") {
         std::size_t i = 2;
-        result_model->i = 0x01;
-        result_model->imm_val = std::stoi(instruction.arg_c, &i, 16);
-        result_model->imm_rot = 0x00;
+        result_model.i = 0x01;
+        result_model.imm_val = std::stoi(instruction.arg_c, &i, 16);
+        result_model.imm_rot = 0x00;
     } else if (instruction.arg_c.size() > 1 && instruction.arg_c.substr(0, 1) == "#") {
-        result_model->i = 0x01;
-        result_model->imm_val = std::stoi(instruction.arg_c.substr(1));
-        result_model->imm_rot = 0x00;
+        result_model.i = 0x01;
+        result_model.imm_val = std::stoi(instruction.arg_c.substr(1));
+        result_model.imm_rot = 0x00;
     }
 }
 
-const uint8_t Parser::parse_s(TokenisedInstruction instruction) {
+uint8_t Parser::parse_s(const TokenisedInstruction& instruction) {
     if (instruction.s == "S") {
         return 0x01;
     } else {
@@ -89,7 +89,7 @@ const uint8_t Parser::parse_s(TokenisedInstruction instruction) {
     }
 }
 
-const uint8_t Parser::parse_reg_string(std::string string) {
+uint8_t Parser::parse_reg_string(const std::string& string) {
     if (string.size() > 1) {
         return std::stoi(string.substr(1));
     } else {
@@ -97,15 +97,15 @@ const uint8_t Parser::parse_reg_string(std::string string) {
     }
 }
 
-const uint8_t Parser::parse_reg_d(TokenisedInstruction instruction) {
+uint8_t Parser::parse_reg_d(const TokenisedInstruction& instruction) {
     return parse_reg_string(instruction.arg_a);
 }
 
-const uint8_t Parser::parse_reg_n(TokenisedInstruction instruction) {
+uint8_t Parser::parse_reg_n(const TokenisedInstruction& instruction) {
     return parse_reg_string(instruction.arg_b);
 }
 
-const uint8_t Parser::parse_operation_code(TokenisedInstruction instruction) {
+uint8_t Parser::parse_operation_code(const TokenisedInstruction& instruction) {
     if (instruction_codes.count(instruction.operation) > 0) {
         return instruction_codes.at(instruction.operation);
     } else {
@@ -113,7 +113,7 @@ const uint8_t Parser::parse_operation_code(TokenisedInstruction instruction) {
     }
 }
 
-const uint8_t Parser::parse_condition_code(TokenisedInstruction instruction) {
+uint8_t Parser::parse_condition_code(const TokenisedInstruction& instruction) {
     if (condition_codes.count(instruction.condition) > 0) {
         return condition_codes.at(instruction.condition);
     } else {

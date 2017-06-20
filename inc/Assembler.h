@@ -15,18 +15,18 @@
 #include "Parser.h"
 
 namespace assembler {
-    
+
 class Assembler {
     Parser m_parser;
     Lexer  m_lexer;
-    
-    std::vector<std::string> code_into_lines(std::string code);
-    
+
+    std::vector<std::string> code_into_lines(const std::string& code);
+
 public:
-    uint32_t assemble_model(InstructionModel model);
-    std::vector<uint32_t> assemble(std::string code);
+    uint32_t assemble_model(const InstructionModel& model);
+    std::vector<uint32_t> assemble(const std::string& code);
 };
-    
+
 } // namespace assembler
 
 #endif /* defined(__virtualmachine__Assembler__) */

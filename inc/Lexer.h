@@ -13,7 +13,7 @@
 #include <vector>
 
 namespace assembler {
-    
+
 typedef struct {
     std::string operation;
     std::string condition;
@@ -24,20 +24,20 @@ typedef struct {
 } TokenisedInstruction;
 
 class Lexer {
-    const std::string extract_partial_token(std::vector<std::string> tokens, int token_index, int start, int length);
-    const std::string extract_single_token(std::vector<std::string> tokens, int token_index);
-    
-    const std::string tokens_to_operation(std::vector<std::string> token);
-    const std::string tokens_to_condition(std::vector<std::string> token);
-    const std::string tokens_to_arg_a(std::vector<std::string> token);
-    const std::string tokens_to_arg_b(std::vector<std::string> token);
-    const std::string tokens_to_arg_c(std::vector<std::string> token);
-    const std::string tokens_to_s(std::vector<std::string> token);
-    
+    std::string extract_partial_token(const std::vector<std::string>& tokens, int token_index, int start, int length);
+    std::string extract_single_token(const std::vector<std::string>& tokens, int token_index);
+
+    std::string tokens_to_operation(const std::vector<std::string>& token);
+    std::string tokens_to_condition(const std::vector<std::string>& token);
+    std::string tokens_to_arg_a(const std::vector<std::string>& token);
+    std::string tokens_to_arg_b(const std::vector<std::string>& token);
+    std::string tokens_to_arg_c(const std::vector<std::string>& token);
+    std::string tokens_to_s(const std::vector<std::string>& token);
+
 public:
-    const TokenisedInstruction tokenize(std::string line);
+    TokenisedInstruction tokenize(const std::string& line);
 };
-    
+
 } // namespace assembler
 
 #endif /* defined(__virtualmachine__Lexer__) */

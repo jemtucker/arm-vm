@@ -44,7 +44,7 @@ std::vector<std::string> split_string(const std::string& str, const std::string&
 
 namespace assembler {
 
-std::vector<uint32_t> Assembler::assemble(std::string code) {
+std::vector<uint32_t> Assembler::assemble(const std::string& code) {
     // Normalise the code into uppercase, this is all the parser can handle
     std::string upper_case = code;
     std::transform(
@@ -68,7 +68,7 @@ std::vector<uint32_t> Assembler::assemble(std::string code) {
     return result;
 }
 
-uint32_t Assembler::assemble_model(InstructionModel model) {
+uint32_t Assembler::assemble_model(const InstructionModel& model) {
     uint32_t condition = model.cond << 28;
     uint32_t operation = model.code << 21;
     uint32_t reg_n = model.reg_n << 16;
@@ -85,7 +85,7 @@ uint32_t Assembler::assemble_model(InstructionModel model) {
     return condition | i | operation | s | reg_n | reg_d | operand_2;
 }
 
-std::vector<std::string> Assembler::code_into_lines(std::string code) {
+std::vector<std::string> Assembler::code_into_lines(const std::string& code) {
     return split_string(code, "\n");
 }
 

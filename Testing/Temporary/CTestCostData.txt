@@ -1,3 +1,0 @@
-armvm-test 0 0
----
-armvm-test
