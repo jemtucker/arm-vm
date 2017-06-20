@@ -15,9 +15,24 @@ namespace {
 std::vector<std::string> split_string(const std::string& str, const std::string& delims) {
     std::vector<std::string> tokens;
     size_t pos = 0;
-    while ((pos = str.find_first_of(delims, pos)) != std::string::npos) {
-        std::string token = str.substr(0, pos++);
-    }
+    size_t last = 0;
+
+    do
+    {
+        // Find next delimiter
+        pos = str.find_first_of(delims, pos);
+        if (pos == std::string::npos) {
+            tokens.push_back(str.substr(last));
+        } else if (pos > last) {
+            const auto len = (pos++ - last);
+            tokens.push_back(str.substr(last, len));
+        } else {
+            ++pos;
+        }
+
+        last = pos;
+    } while (pos != std::string::npos);
+
     return tokens;
 }
 

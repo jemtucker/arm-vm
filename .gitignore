@@ -4,7 +4,7 @@ armvm
 # Test build output
 googletest-*
 test/armvm-test
-test/Testing/
+Testing/
 
 # CMake stuffs
 .depend

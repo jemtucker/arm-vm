@@ -19,9 +19,24 @@ namespace {
 std::vector<std::string> split_string(const std::string& str, const std::string& delims) {
     std::vector<std::string> tokens;
     size_t pos = 0;
-    while ((pos = str.find_first_of(delims, pos)) != std::string::npos) {
-        std::string token = str.substr(0, pos++);
-    }
+    size_t last = 0;
+
+    do
+    {
+        // Find next delimiter
+        pos = str.find_first_of(delims, pos);
+        if (pos == std::string::npos) {
+            tokens.push_back(str.substr(last));
+        } else if (pos > last) {
+            const auto len = (pos++ - last);
+            tokens.push_back(str.substr(last, len));
+        } else {
+            ++pos;
+        }
+
+        last = pos;
+    } while (pos != std::string::npos);
+
     return tokens;
 }
 
@@ -30,9 +45,18 @@ std::vector<std::string> split_string(const std::string& str, const std::string&
 namespace assembler {
 
 std::vector<uint32_t> Assembler::assemble(std::string code) {
+    // Normalise the code into uppercase, this is all the parser can handle
+    std::string upper_case = code;
+    std::transform(
+        code.begin(),
+        code.end(),
+        upper_case.begin(),
+        ::toupper
+    );
+
     std::vector<uint32_t> result;
 
-    auto lines = code_into_lines(code);
+    auto lines = code_into_lines(upper_case);
 
     for (auto iter = lines.begin(); iter != lines.end(); iter++) {
         auto tokens = m_lexer.tokenize(*iter);
