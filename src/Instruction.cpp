@@ -43,39 +43,5 @@ const std::string Instruction::MN_GT = "GT";
 const std::string Instruction::MN_LE = "LE";
 const std::string Instruction::MN_AL = "AL";
 const std::string Instruction::MN_NV = "NV";
-    
-const char Instruction::OP_AND;
-const char Instruction::OP_EOR;
-const char Instruction::OP_SUB;
-const char Instruction::OP_RSB;
-const char Instruction::OP_ADD;
-const char Instruction::OP_ADC;
-const char Instruction::OP_SBC;
-const char Instruction::OP_RSC;
-const char Instruction::OP_TST;
-const char Instruction::OP_TEQ;
-const char Instruction::OP_CMP;
-const char Instruction::OP_CMN;
-const char Instruction::OP_ORR;
-const char Instruction::OP_MOV;
-const char Instruction::OP_BIC;
-const char Instruction::OP_MVN;
-    
-const char Instruction::CND_EQ;
-const char Instruction::CND_NE;
-const char Instruction::CND_HS;
-const char Instruction::CND_LO;
-const char Instruction::CND_MI;
-const char Instruction::CND_PL;
-const char Instruction::CND_VS;
-const char Instruction::CND_VC;
-const char Instruction::CND_HI;
-const char Instruction::CND_LS;
-const char Instruction::CND_GE;
-const char Instruction::CND_LT;
-const char Instruction::CND_GT;
-const char Instruction::CND_LE;
-const char Instruction::CND_AL;
-const char Instruction::CND_NV;
 
 } // namespace vm

@@ -18,14 +18,14 @@ namespace vm {
 uint32_t VirtualMachine::run(std::vector<uint32_t> instructions) {
     *m_reg_pc = 0;
     m_running = true;
-    
+
     while (m_running) {
         show_registers();
         uint32_t instr = fetch(instructions);
         decode(instr);
         execute();
     }
-    
+
     show_registers();
     return 0;
 }
@@ -39,9 +39,9 @@ void VirtualMachine::decode(uint32_t instruction) {
 
     m_i = op.i;
     m_s = op.s;
-    
+
     m_cond = op.cond;
-    
+
     m_op_code  = op.code;
     m_op_reg_d = op.reg_d;
     m_op_reg_n = op.reg_n;
@@ -53,14 +53,14 @@ void VirtualMachine::decode(uint32_t instruction) {
 
 void VirtualMachine::execute() {
     uint32_t *op_dest = &m_registers[ m_op_reg_d ];
-    
+
     uint32_t op_a = m_registers[ m_op_reg_n ];
     uint32_t op_b = m_registers[ m_op_reg_m ];
-    
+
     if (m_i) {
         op_b = m_imm_val;
     }
-    
+
     switch (m_op_code) {
         case Instruction::OP_AND:
             debug("Executing [AND]");
@@ -138,15 +138,15 @@ void VirtualMachine::show_registers() {
     }
     printf("\n");
 }
-    
+
 std::vector<uint32_t> VirtualMachine::get_registers() {
     return m_registers;
 }
-    
-    void VirtualMachine::set_debug(bool on) {
-        m_debug = on;
-    }
-    
+
+void VirtualMachine::set_debug(bool on) {
+    m_debug = on;
+}
+
 void VirtualMachine::debug(std::string message) {
     if (m_debug) {
         std::cout << message << std::endl;
@@ -154,5 +154,3 @@ void VirtualMachine::debug(std::string message) {
 }
 
 } // namespace vm
-
-
