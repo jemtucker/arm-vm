@@ -5,6 +5,7 @@ armvm
 googletest-*
 test/armvm-test
 Testing/
+*.dSYM
 
 # CMake stuffs
 .depend
