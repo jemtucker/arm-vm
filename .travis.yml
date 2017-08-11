@@ -3,4 +3,4 @@ compiler:
   - clang
   - gcc
 script:
-  - CMake . && make && make test
+  - cmake . && make && make test
