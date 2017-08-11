@@ -4,6 +4,8 @@ script:
 
 matrix:
   - os: linux
+    compiler: clang-5.0
+    install: export CC=clang-5.0 && export CXX=clang++-5.0
     addons:
       apt:
         sources:
@@ -11,18 +13,14 @@ matrix:
         packages:      
           - clang-5.0
           - libc++-dev
-    env:
-      - MATRIX_EVAL="export CC=clang-5.0 && export CXX=clang++-5.0" 
 
   - os: linux
+    compiler: gcc-6
+    install: export CC=gcc-6 && export CXX=g++-6
     addons:
       apt:
         sources:
           - ubuntu-toolchain-r-test
         packages:
           - g++-6
-    env:
-      - MATRIX_EVAL="export CC=gcc-6 && export CXX=g++-6"
 
-before_install:
-  - eval "${MATRIX_EVAL}"
