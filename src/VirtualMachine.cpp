@@ -147,7 +147,7 @@ void VirtualMachine::set_debug(bool on) {
     m_debug = on;
 }
 
-void VirtualMachine::debug(std::string message) {
+void VirtualMachine::debug(const std::string& message) {
     if (m_debug) {
         std::cout << message << std::endl;
     }

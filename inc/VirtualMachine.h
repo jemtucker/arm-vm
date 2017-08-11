@@ -10,6 +10,7 @@
 #define __virtualmachine__VirtualMachine__
 
 #include <vector>
+#include <string>
 
 #include "Decoder.h"
 
@@ -54,7 +55,7 @@ class VirtualMachine {
     void execute();
     void show_registers();
     
-    void debug(std::string message);
+    void debug(const std::string& message);
     
 public:
     void set_debug(bool on);
