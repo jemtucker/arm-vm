@@ -5,14 +5,13 @@ script:
 matrix:
   include:
     - os: linux
-      compiler: clang-4.0
-      install: export CC=clang-4.0 && export CXX=clang++-4.0
+      install: export CC=clang-5.0 && export CXX=clang++-4.0
       addons:
         apt:
           sources:
             - llvm-toolchain-trusty
           packages:      
-            - clang-4.0
+            - clang-5.0
             - libc++-dev
 
     - os: linux
