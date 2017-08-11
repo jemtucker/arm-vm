@@ -11,8 +11,8 @@ matrix:
         packages:      
           - clang-5.0
           - libc++-dev
-        env:
-          - MATRIX_EVAL="export CC=clang-5.0 && export CXX=clang++-5.0" 
+    env:
+      - MATRIX_EVAL="export CC=clang-5.0 && export CXX=clang++-5.0" 
 
   - os: linux
     addons:
@@ -21,8 +21,8 @@ matrix:
           - ubuntu-toolchain-r-test
         packages:
           - g++-6
-        env:
-          - MATRIX_EVAL="export CC=gcc-6 && export CXX=g++-6"
+    env:
+      - MATRIX_EVAL="export CC=gcc-6 && export CXX=g++-6"
 
 before_install:
   - eval "${MATRIX_EVAL}"
