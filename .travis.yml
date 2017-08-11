@@ -5,10 +5,12 @@ script:
 matrix:
   include:
     - os: linux
-      install: export CC=clang-5.0 && export CXX=clang++-4.0
+      compiler: clang-5.0
+      install: export CC=clang-5.0 && export CXX=clang++-5.0
       addons:
         apt:
           sources:
+            - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty
           packages:      
             - clang-5.0
